@@ -1,36 +1,39 @@
+let keysDown = {
+    'w': false,
+    's': false,
+    'o': false,
+    'l': false
+};
+
 //Clase para las cosas que se van a manejar en el PONG
 class barra {
 
-    constructor(x, y, width, height, pos, neg, speed = 7) {
+    constructor(x, y, width, height, keyUp, keyDown, speed = 5) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.pos = pos;
-        this.neg = neg;
+        this.keyUp = keyUp;
+        this.keyDown = keyDown;
         this.speed = speed;
     }
 
     moveUp() {
         this.y -= this.speed;
-
-        if (this.y >= 0) {
-            this.y -= this.speed;
-        }
     }
     moveDown() {
         this.y += this.speed;
-
-        if (this.y <= 300 - this.height) {
-            this.y += this.speed;
-        }
     }
     draw(context) {
         context.fillStyle = 'white';
         context.fillRect(this.x, this.y, this.width, this.height);
     }
     update() {
+        if (keysDown[this.keyUp])
+            this.moveUp();
 
+        if (keysDown[this.keyDown])
+            this.moveDown();
     }
 }
 
@@ -85,9 +88,9 @@ function update(canvas, context, barras, bola) {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    barras.forEach(bola => {
-        bola.draw(context);
-        bola.update();
+    barras.forEach(barra => {
+        barra.draw(context);
+        barra.update();
     });
 
     bola.update(0, canvas.height, 0, canvas.width);
@@ -97,21 +100,13 @@ function update(canvas, context, barras, bola) {
 function main() {
 
     const canvas = document.getElementById("pongCanvas");
-    document.addEventListener("keypress", keyPress);
-
     const context = canvas.getContext("2d");
 
-    let barraIzq = new barra(10, 120, 20, 60, 119, 115);
-    let barraDer = new barra(570, 120, 20, 60, 105, 107);
+    let barraIzq = new barra(10, 120, 20, 60, 'w', 's');
+    let barraDer = new barra(570, 120, 20, 60, 'o', 'l');
     let bola = new pelota(canvas.width / 2, canvas.height / 2, 10);
 
-    var dRBx = barraIzq.x - bola.x;
-    var dRBy = barraIzq.y - bola.y;
-    var distIzq = Math.sqrt(dRBx * dRBx + dRBy * dRBy);
-
     let barras = [];
-
-    console.log(distIzq);
 
     barras.push(barraIzq, barraDer, bola);
 
@@ -122,25 +117,35 @@ function main() {
         }); 
      */
 
-    console.log(barras);
+    document.addEventListener("keydown", function (event) { keysDown[event.key] = true; });
+    // document.addEventListener("keydown", function (event) {
+    // if (event.key == 'w')
+    //     keysDown[event.key] = true;
 
-    function keyPress(event) {
+    // if (event.key == 'o')
+    //     keysDown[event.key] = true;
 
-        console.log(event.keyCode);
+    // if (event.key == 's')
+    //     keysDown[event.key] = true;
 
-        barras.forEach(object => {
+    // if(event.key == 'l')
+    //     keysDown[event.key] = true;
+    // });
 
-            //Para que detecte si se presiona la W (sin importar si es mayúscula)
-            if (event.keyCode == object.pos) {
-                object.moveUp();
-            }
+    document.addEventListener("keyup", function (event) { keysDown[event.key] = false; });
+    // document.addEventListener("keyup", function (event) {
+    // if (event.key == 'w')
+    //     keysDown[event.key] = false;
 
-            //Para que detecte si se presiona S (sin importar si es mayúscula)
-            else if (event.keyCode == object.neg) {
-                object.moveDown();
-            }
-        });
-    }
+    // if (event.key == 'o')
+    //     keysDown[event.key] = false;
+
+    // if (event.key == 's')
+    //     keysDown[event.key] = false;
+
+    // if (event.key == 'l')
+    //     keysDown[event.key] = false;
+    // });
 
     //Operador de Morsa
     //barras.forEach(object => object.draw(context));
