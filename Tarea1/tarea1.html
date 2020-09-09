@@ -17,12 +17,12 @@
                     initGL(canvas);
 
                     let pyramid = createPyramid(gl, [-5, 0, -5], [0.1, 1.0, 0.2]);     //  Pyramid
-                    let cube2 = createDodecahedron(gl, [0, 0, -5], [-0.4, 1.0, 0.1]);   //  Dodecahedron
+                    let rupee = createDodecahedron(gl, [0, 0, -5], [-0.4, 1.0, 0.1]);   //  Dodecahedron
                     let cube3 = createOctahedron(gl, [5, 0 , -5], [0, 1, 0]);        //  Octahedron
 
                     initShader(gl);
 
-                    run(gl, [pyramid, cube2, cube3]);
+                    run(gl, [pyramid, rupee, cube3]);
                 }
             );
     </script>
