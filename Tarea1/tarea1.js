@@ -83,31 +83,31 @@ function createPyramid(gl, translation, rotationAxis) {
         0.81, -0.8, 0.0,    //C 2
         -1.24, 0.96, 0.0,   //D 3
         1.24, 0.96, 0.0,    //E 4
-    
+
         //Primer cara
         0.0, 1.8, 0.0,      //A 5
         -1.24, 0.96, 0.0,   //D 6
-        0.0, 0.0, 2.0,      //P 7
+        0.0, 0.0, 2.25,      //P 7
 
         //Segunda cara
         -0.81, -0.8, 0.0,   //B 8  
         -1.24, 0.96, 0.0,   //D 9
-        0.0, 0.0, 2.0,      //P 10
+        0.0, 0.0, 2.25,      //P 10
 
         //Tercera cara
         -0.81, -0.8, 0.0,   //B 11
         0.81, -0.8, 0.0,    //C 12 
-        0.0, 0.0, 2.0,      //P 13
+        0.0, 0.0, 2.25,      //P 13
 
         //Cuarta cara
         0.81, -0.8, 0.0,    //C 14
         1.24, 0.96, 0.0,    //E 15
-        0.0, 0.0, 2.0,      //P 16
+        0.0, 0.0, 2.25,      //P 16
 
         //Quinta cara
         0.0, 1.8, 0.0,      //A 17
         1.24, 0.96, 0.0,    //E 18
-        0.0, 0.0, 2.0,      //P 19
+        0.0, 0.0, 2.25,      //P 19
 
     ];
 
@@ -312,41 +312,47 @@ function createOctahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
     let verts = [
-        // Front face
-        -1.0, -1.0, 1.0,
-        1.0, -1.0, 1.0,
-        1.0, 1.0, 1.0,
-        -1.0, 1.0, 1.0,
+        //Primera cara
+        -1, -1, 0,          //  A   0
+        1, 1, 0,            //  B   1
+        0.0, 0.0, 1.5,      //  P+  2
+        
+        //Segunda cara
+        1, 1, 0,            //  B   3
+        1, -1, 0,           //  C   4
+        0.0, 0.0, 1.5,      //  P+  5
 
-        // Back face
-        -1.0, -1.0, -1.0,
-        -1.0, 1.0, -1.0,
-        1.0, 1.0, -1.0,
-        1.0, -1.0, -1.0,
+        //Tercera cara
+        1, -1, 0,           //  C   6
+        -1, -1, 0,          //  D   7
+        0.0, 0.0, 1.5,      //  P+  8
 
-        // Top face
-        -1.0, 1.0, -1.0,
-        -1.0, 1.0, 1.0,
-        1.0, 1.0, 1.0,
-        1.0, 1.0, -1.0,
+        //Cuarta cara
+        -1, -1, 0,          //  A   9
+        -1, -1, 0,          //  D   10
+        0.0, 0.0, 1.5,      //  P+  11
 
-        // Bottom face
-        -1.0, -1.0, -1.0,
-        1.0, -1.0, -1.0,
-        1.0, -1.0, 1.0,
-        -1.0, -1.0, 1.0,
+    //  A partir de aquí se pintan las caras negativas
 
-        // Right face
-        1.0, -1.0, -1.0,
-        1.0, 1.0, -1.0,
-        1.0, 1.0, 1.0,
-        1.0, -1.0, 1.0,
+        //Quinta cara
+        -1, -1, 0,          //  A   12
+        1, 1, 0,            //  B   13
+        0.0, 0.0, -1.5,     //  P-  14
 
-        // Left face
-        -1.0, -1.0, -1.0,
-        -1.0, -1.0, 1.0,
-        -1.0, 1.0, 1.0,
-        -1.0, 1.0, -1.0
+        //Sexta cara
+        1, 1, 0,            //  B   15
+        1, -1, 0,           //  C   16
+        0.0, 0.0, -1.5,     //  P-  17
+
+        //Séptima cara
+        1, -1, 0,           //  C   18
+        -1, -1, 0,          //  D   19
+        0.0, 0.0, -1.5,     //  P-  20
+
+        //Octava cara
+        -1, -1, 0,          //  A   21
+        -1, -1, 0,          //  D   22
+        0.0, 0.0, -1.5,     //  P-  23
     ];
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
@@ -356,12 +362,15 @@ function createOctahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 
     let faceColors = [
-        [1.0, 0.0, 0.0, 1.0], // Front face
-        [0.0, 1.0, 0.0, 1.0], // Back face
-        [0.0, 0.0, 1.0, 1.0], // Top face
-        [1.0, 1.0, 0.0, 1.0], // Bottom face
-        [1.0, 0.0, 1.0, 1.0], // Right face
-        [0.0, 1.0, 1.0, 1.0]  // Left face
+        //R    G    B    T
+        [1.0, 0.0, 0.0, 1.0],       // Primera
+        [0.0, 1.0, 0.0, 1.0],       // Segunda
+        [0.0, 0.0, 1.0, 1.0],       // Tercera
+        [1.0, 1.0, 0.0, 1.0],       // Cuarta
+        [1.0, 0.0, 1.0, 1.0],       // Quinta
+        [0.0, 1.0, 1.0, 1.0],       // Sexta
+        [0.165, 0.937, 0.86, 1.0],  // Séptima  
+        [0.99, 0.80, 0.24, 1.0]     //Octavo
     ];
 
     // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
@@ -372,7 +381,7 @@ function createOctahedron(gl, translation, rotationAxis) {
     //         vertexColors.push(...color);
     // }
     faceColors.forEach(color => {
-        for (let j = 0; j < 4; j++)
+        for (let j = 0; j < 6; j++)
             vertexColors.push(...color);
     });
 
@@ -382,22 +391,24 @@ function createOctahedron(gl, translation, rotationAxis) {
     let cubeIndexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
 
-    let cubeIndices = [
-        0, 1, 2, 0, 2, 3,    // Front face
-        4, 5, 6, 4, 6, 7,    // Back face
-        8, 9, 10, 8, 10, 11,  // Top face
-        12, 13, 14, 12, 14, 15, // Bottom face
-        16, 17, 18, 16, 18, 19, // Right face
-        20, 21, 22, 20, 22, 23  // Left face
+    let diamondIndices = [
+        0, 1, 2,        //Primer cara
+        3, 4, 5,        //Segunda cara
+        6, 7, 8,        //Tercera cara
+        9, 10, 11,      //Cuarta cara
+        12, 13, 14,     //Quinta cara
+        15, 16, 17,     //Sexta cara
+        18, 19, 20,     //Séptima cara
+        21, 22, 23      //Octava cara
     ];
 
     // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
     // Uint16Array: Array of 16-bit unsigned integers.
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(diamondIndices), gl.STATIC_DRAW);
 
     let cube = {
         buffer: vertexBuffer, colorBuffer: colorBuffer, indices: cubeIndexBuffer,
-        vertSize: 3, nVerts: 24, colorSize: 4, nColors: 24, nIndices: 36,
+        vertSize: 3, nVerts: 24, colorSize: 4, nColors: 24, nIndices: 24,
         primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
     };
 
