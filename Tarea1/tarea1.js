@@ -135,8 +135,10 @@ function createPyramid(gl, translation, rotationAxis) {
     //         vertexColors.push(...color);
     // }
 
+    let baseValues = [0.99, 0.80, 0.24, 1];
+
     for (let index = 0; index < 5; index++) {
-        vertexColors.push(...[1, 0.125, 0, 1]);
+        vertexColors.push(...baseValues);
     }
 
     faceColors.forEach(color => {
