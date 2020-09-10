@@ -92,7 +92,6 @@ function createPyramid(gl, translation, rotationAxis) {
         //Segunda cara
         -0.81, -0.8, 0.0,   //B 8  
         -1.24, 0.96, 0.0,   //D 9
-
         0.0, 0.0, 2.25,      //P 10
 
         //Tercera cara
@@ -130,11 +129,6 @@ function createPyramid(gl, translation, rotationAxis) {
 
     // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
     let vertexColors = [];
-    // for (const color of faceColors) 
-    // {
-    //     for (let j=0; j < 4; j++)
-    //         vertexColors.push(...color);
-    // }
 
     let baseValues = [0.99, 0.80, 0.24, 1];
 
@@ -200,43 +194,56 @@ function createDodecahedron(gl, translation, rotationAxis) {
 
     let verts = [
 
+        //Base
+        -2.53, 0.16, 0,     //  A - 0
+        -0.63, 2.46, 0,     //  B - 1
+        2.15, 1.36, 0,      //  C - 2
+        1.95, -1.62, 0,     //  D - 3
+        -0.94, -2.36, 0,    //  E - 4
 
+       //1st face
+        -2.53, 0.16, 0,     //  A - 5
+        -0.63, 2.46, 0,     //  B - 6
+        -1.02, 3.98, 2.54,  //  F - 7
+        -3.16, 2.62, 4.11,  //  G - 8
+        -4.1, 0.26, 2.54,   //  H - 9
 
-        // Front face
-        -1.0, -1.0, 1.0,
-        1.0, -1.0, 1.0,
-        1.0, 1.0, 1.0,
-        -1.0, 1.0, 1.0,
+        //2nd face
+        -0.63, 2.46, 0,     //  B - 10
+        2.15, 1.36, 0,      //  C - 11
+        3.47, 2.2, 2.54,    //  I - 12
+        1.52, 3.82, 4.11,   //  J - 13
+        -1.02, 3.98, 2.54,  //  F - 14
 
-        // Back face
-        -1.0, -1.0, -1.0,
-        -1.0, 1.0, -1.0,
-        1.0, 1.0, -1.0,
-        1.0, -1.0, -1.0,
+        //3rd face
+        2.15, 1.36, 0,      //  C - 15
+        1.95, -1.62, 0,     //  D - 16
+        3.16, -2.62, 2.54,  //  L - 17
+        4.1, -0.26, 4.11,   //  M - 18
+        3.47, 2.2, 2.54,    //  I - 19
 
-        // Top face
-        -1.0, 1.0, -1.0,
-        -1.0, 1.0, 1.0,
-        1.0, 1.0, 1.0,
-        1.0, 1.0, -1.0,
+        //4th face
+        3.16, -2.62, 2.54,  //  L - 20
+        1.95, -1.62, 0,     //  D - 21
+        -0.94, -2.36, 0,    //  E - 22
+        -1.52, -3.82, 2.54, //  N - 23
+        1.02, -3.98, 4.11,  //  O - 24
 
-        // Bottom face
-        -1.0, -1.0, -1.0,
-        1.0, -1.0, -1.0,
-        1.0, -1.0, 1.0,
-        -1.0, -1.0, 1.0,
+        //5th face
+        -1.52, -3.82, 2.54, //  N - 25
+        -0.94, -2.36, 0,    //  E - 26
+        -2.53, 0.16, 0,     //  A - 27
+        -4.1, 0.26, 2.54,   //  H - 28
+        -3.47, -2.2, 4.11,  //  P - 29
 
-        // Right face
-        1.0, -1.0, -1.0,
-        1.0, 1.0, -1.0,
-        1.0, 1.0, 1.0,
-        1.0, -1.0, 1.0,
+//      Base superior y caras de ese lado
+        //6th face
+        -2.15, -1.36, 6.65      //  T - 30
+        -1.95, 1.62, 6.65,     //  V - 31
+        -4.1, 0.26, 2.54,       //  H - 9
+        -3.16, 2.62, 4.11,      //  G - 8
+        -3.47, -2.2, 4.11,      //  P - 29  (34)
 
-        // Left face
-        -1.0, -1.0, -1.0,
-        -1.0, -1.0, 1.0,
-        -1.0, 1.0, 1.0,
-        -1.0, 1.0, -1.0
     ];
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
@@ -246,12 +253,15 @@ function createDodecahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 
     let faceColors = [
-        [1.0, 0.0, 0.0, 1.0], // Front face
-        [0.0, 1.0, 0.0, 1.0], // Back face
-        [0.0, 0.0, 1.0, 1.0], // Top face
-        [1.0, 1.0, 0.0, 1.0], // Bottom face
-        [1.0, 0.0, 1.0, 1.0], // Right face
-        [0.0, 1.0, 1.0, 1.0]  // Left face
+        //R    G    B    T
+        [1.0, 0.0, 0.0, 1.0],       // Primera
+        [0.0, 1.0, 0.0, 1.0],       // Segunda
+        [0.0, 0.0, 1.0, 1.0],       // Tercera
+        [1.0, 1.0, 0.0, 1.0],       // Cuarta
+        [1.0, 0.0, 1.0, 1.0],       // Quinta
+        [0.0, 1.0, 1.0, 1.0],       // Sexta
+        [1.0, 1.0, 1.0, 1.0],       // Séptima  
+        [0.0, 0.0, 0.0, 1.0]        //Octavo
     ];
 
     // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
@@ -262,7 +272,7 @@ function createDodecahedron(gl, translation, rotationAxis) {
     //         vertexColors.push(...color);
     // }
     faceColors.forEach(color => {
-        for (let j = 0; j < 4; j++)
+        for (let j = 0; j < 5; j++)
             vertexColors.push(...color);
     });
 
@@ -273,12 +283,13 @@ function createDodecahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
 
     let cubeIndices = [
-        0, 1, 2, 0, 2, 3,    // Front face
-        4, 5, 6, 4, 6, 7,    // Back face
-        8, 9, 10, 8, 10, 11,  // Top face
-        12, 13, 14, 12, 14, 15, // Bottom face
-        16, 17, 18, 16, 18, 19, // Right face
-        20, 21, 22, 20, 22, 23  // Left face
+        0, 1, 2,        0, 2, 3,        0, 3, 4,    //BASE
+        8, 7, 6,        8, 6, 5,        8, 5, 9,    //First
+        13, 11, 12,     13, 11, 10,     10, 14, 13, //Second
+        16, 17, 18,     15, 16, 18,     15, 18, 19, //Third
+        22, 23, 24,     21, 22, 24,     20, 21, 24, //Fourth
+        27, 28, 29,     26, 27, 29,     25, 26, 29, //Fifth
+        8, 9, 30,       9, 30, 31,      9, 29, 31,  //Seventh
     ];
 
     // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
@@ -287,7 +298,7 @@ function createDodecahedron(gl, translation, rotationAxis) {
 
     let cube = {
         buffer: vertexBuffer, colorBuffer: colorBuffer, indices: cubeIndexBuffer,
-        vertSize: 3, nVerts: 24, colorSize: 4, nColors: 24, nIndices: 36,
+        vertSize: 3, nVerts: 35, colorSize: 4, nColors: 35, nIndices: 63,
         primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
     };
 
@@ -319,7 +330,7 @@ function createOctahedron(gl, translation, rotationAxis) {
 
     let verts = [
         //Comienzan áreas positivas
-
+        // X,    Z,     Y
         //Primera cara
         -1.0, 0.0, 1.0, 	//  A   0
         -1.0, 0.0, -1.0,    //  B   1
