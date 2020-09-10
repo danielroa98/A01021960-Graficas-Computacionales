@@ -430,12 +430,31 @@ function createOctahedron(gl, translation, rotationAxis) {
 
     mat4.translate(rupee.modelViewMatrix, rupee.modelViewMatrix, translation);
 
+    let bounceTop = true;
+    let bounceBot = false;
+
     rupee.update = function () {
         let now = Date.now();
         let deltat = now - this.currentTime;
         this.currentTime = now;
         let fract = deltat / duration;
         let angle = Math.PI * 2 * fract;
+
+        if (bounceTop == true) {
+            mat4.translate(rupee.modelViewMatrix, rupee.modelViewMatrix, [0, -.025, 0]);
+            if (this.modelViewMatrix[13] < -2.89) {
+                bounceBot = true;
+                bounceTop = false;
+            }
+        }
+
+        if (bounceBot == true) {
+            mat4.translate(rupee.modelViewMatrix, rupee.modelViewMatrix, [0, .025, 0]);
+            if (this.modelViewMatrix[13] > 2.89) {
+                bounceBot = false;
+                bounceTop = true;
+            }
+        }
 
         // Rotates a mat4 by the given angle
         // mat4 out the receiving matrix
