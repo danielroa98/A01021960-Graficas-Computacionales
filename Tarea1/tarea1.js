@@ -193,57 +193,89 @@ function createDodecahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
     let verts = [
-
         //Base
-        -2.53, 0.16, 0,     //  A - 0
-        -0.63, 2.46, 0,     //  B - 1
-        2.15, 1.36, 0,      //  C - 2
-        1.95, -1.62, 0,     //  D - 3
-        -0.94, -2.36, 0,    //  E - 4
+        -1.3, 0.0, -0.5,    // 0
+        -0.8, 0.8, -0.8,    // 1
+        0.0, 0.5, -1.3,     // 2
+        0.0, -0.5, -1.3,    // 3
+        -0.8, -0.8, -0.8,   // 4
 
-       //1st face
-        -2.53, 0.16, 0,     //  A - 5
-        -0.63, 2.46, 0,     //  B - 6
-        -1.02, 3.98, 2.54,  //  F - 7
-        -3.16, 2.62, 4.11,  //  G - 8
-        -4.1, 0.26, 2.54,   //  H - 9
+        //First face
+        -0.8, 0.8, 0.8,     // 5
+        -0.5, 1.3, 0.0,     // 6
+        -0.8, 0.8, -0.8,    // 7
+        -1.3, 0.0, -0.5,    // 8
+        -1.3, 0.0, 0.5,     // 9
 
-        //2nd face
-        -0.63, 2.46, 0,     //  B - 10
-        2.15, 1.36, 0,      //  C - 11
-        3.47, 2.2, 2.54,    //  I - 12
-        1.52, 3.82, 4.11,   //  J - 13
-        -1.02, 3.98, 2.54,  //  F - 14
+        //Second face
+        0.5, 1.3, 0.0,      // 10
+        0.8, 0.8, -0.8,     // 11
+        0.0, 0.5, -1.3,     // 12
+        -0.8, 0.8, -0.8,    // 13
+        -0.5, 1.3, 0.0,     // 14
 
-        //3rd face
-        2.15, 1.36, 0,      //  C - 15
-        1.95, -1.62, 0,     //  D - 16
-        3.16, -2.62, 2.54,  //  L - 17
-        4.1, -0.26, 4.11,   //  M - 18
-        3.47, 2.2, 2.54,    //  I - 19
+        //Third face
+        1.3, 0.0, -0.5,     // 15
+        0.8, -0.8, -0.8,    // 16
+        0.0, -0.5, -1.3,    // 17
+        0.0, 0.5, -1.3,     // 18
+        0.8, 0.8, -0.8,     // 19
 
-        //4th face
-        3.16, -2.62, 2.54,  //  L - 20
-        1.95, -1.62, 0,     //  D - 21
-        -0.94, -2.36, 0,    //  E - 22
-        -1.52, -3.82, 2.54, //  N - 23
-        1.02, -3.98, 4.11,  //  O - 24
+        //Fourth face
+        0.5, -1.3, 0.0,     // 20
+        -0.5, -1.3, 0.0,    // 21
+        -0.8, -0.8, -0.8,   // 22
+        0.0, -0.5, -1.3,    // 23
+        0.8, -0.8, -0.8,    // 24
 
-        //5th face
-        -1.52, -3.82, 2.54, //  N - 25
-        -0.94, -2.36, 0,    //  E - 26
-        -2.53, 0.16, 0,     //  A - 27
-        -4.1, 0.26, 2.54,   //  H - 28
-        -3.47, -2.2, 4.11,  //  P - 29
+        //Fifth face
+        -0.8, -0.8, 0.8,    // 25
+        -1.3, 0.0, 0.5,     // 26
+        -1.3, 0.0, -0.5,    // 27
+        -0.8, -0.8, -0.8,   // 28
+        -0.5, -1.3, 0.0,    // 29 
 
-//      Base superior y caras de ese lado
-        //6th face
-        -2.15, -1.36, 6.65      //  T - 30
-        -1.95, 1.62, 6.65,     //  V - 31
-        -4.1, 0.26, 2.54,       //  H - 9
-        -3.16, 2.62, 4.11,      //  G - 8
-        -3.47, -2.2, 4.11,      //  P - 29  (34)
+        //Sixth face
+        0.8, 0.8, 0.8,      // 30
+        1.3, 0.0, 0.5,      // 31
+        1.3, 0.0, -0.5,     // 32
+        0.8, 0.8, -0.8,     // 33
+        0.5, 1.3, 0.0,      // 34
 
+        //Seventh face
+        0.0, 0.5, 1.3,      // 35
+        0.8, 0.8, 0.8,      // 36
+        0.5, 1.3, 0.0,      // 37
+        -0.5, 1.3, 0.0,     // 38
+        -0.8, 0.8, 0.8,     // 39
+
+        //Eighth face
+        0.8, -0.8, 0.8,     // 40
+        1.3, 0.0, 0.5,      // 41
+        1.3, 0.0, -0.5,     // 42
+        0.8, -0.8, -0.8,    // 43
+        0.5, -1.3, 0.0,     // 44
+
+        //Nineth face
+        0.0, -0.5, 1.3,         // 45
+        0.8, -0.8, 0.8,         // 46
+        0.5, -1.3, 0.0,         // 47
+        -0.5, -1.3, 0.0,        // 48
+        -0.8, -0.8, 0.8,        // 49
+
+        //10nth face
+        0.0, 0.5, 1.3,      // 50
+        0.0, -0.5, 1.3,         // 51
+        -0.8, -0.8, 0.8,        // 52
+        -1.3, 0.0, 0.5,         // 53
+        -0.8, 0.8, 0.8,         // 54
+
+        //11nth face
+        0.0, 0.5, 1.3,      // 55
+        0.8, 0.8, 0.8,      // 56
+        1.3, 0.0, 0.5,      // 57
+        0.8, -0.8, 0.8,         // 58
+        0.0, -0.5, 1.3,         // 59
     ];
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
@@ -252,16 +284,24 @@ function createDodecahedron(gl, translation, rotationAxis) {
     let colorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 
+    /* let faceColors = [
+        
+    ]; */
+
     let faceColors = [
         //R    G    B    T
-        [1.0, 0.0, 0.0, 1.0],       // Primera
-        [0.0, 1.0, 0.0, 1.0],       // Segunda
-        [0.0, 0.0, 1.0, 1.0],       // Tercera
-        [1.0, 1.0, 0.0, 1.0],       // Cuarta
-        [1.0, 0.0, 1.0, 1.0],       // Quinta
-        [0.0, 1.0, 1.0, 1.0],       // Sexta
-        [1.0, 1.0, 1.0, 1.0],       // Séptima  
-        [0.0, 0.0, 0.0, 1.0]        //Octavo
+        [1.0, 0.0, 0.0, 1.0],           // Primera
+        [0.0, 1.0, 0.0, 1.0],           // Segunda
+        [0.0, 0.0, 1.0, 1.0],           // Tercera
+        [1.0, 1.0, 0.0, 1.0],           // Cuarta
+        [1.0, 0.0, 1.0, 1.0],           // Quinta
+        [0.0, 1.0, 1.0, 1.0],           // Sexta
+        [1.0, 1.0, 1.0, 1.0],           // Séptima  
+        [0.0, 0.0, 0.0, 1.0],           //Octavo
+        [0.4, 0.0, 0.0, 1.0],           //Novena
+        [0.5691, 0.9333, 0.92, 1.0],    //Decima
+        [0.749, 0.572, 0.160, 1.0],     //Onceava
+        [0.670, 0.019, 0.949, 1.0]      //Doceava
     ];
 
     // Each vertex must have the color information, that is why the same color is concatenated 4 times, one for each vertex of the cube's face.
@@ -283,13 +323,18 @@ function createDodecahedron(gl, translation, rotationAxis) {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
 
     let cubeIndices = [
-        0, 1, 2,        0, 2, 3,        0, 3, 4,    //BASE
-        8, 7, 6,        8, 6, 5,        8, 5, 9,    //First
-        13, 11, 12,     13, 11, 10,     10, 14, 13, //Second
-        16, 17, 18,     15, 16, 18,     15, 18, 19, //Third
-        22, 23, 24,     21, 22, 24,     20, 21, 24, //Fourth
-        27, 28, 29,     26, 27, 29,     25, 26, 29, //Fifth
-        8, 9, 30,       9, 30, 31,      9, 29, 31,  //Seventh
+        0, 1, 2,        0, 4, 3,        0, 3, 2,            // Base triangles
+        5, 6, 7,        5, 9, 8,        5, 8, 7,            // Lower middle, upper right triangles
+        10, 11, 12,     10, 14, 13,     10, 13, 12,         // Lower middle, lower right triangles
+        15, 16, 17,     15, 19, 18,     15, 18, 17,         // Lower middle, front triangles
+        20, 21, 22,     20, 24, 23,     20, 23, 22,         // Lower middle, lower left triangles
+        25, 26, 27,     25, 29, 28,     25, 28, 27,         // Lower middle, upper left triangles
+        30, 31, 32,     30, 34, 33,     30, 33, 32,         // Upper middle, lower right triangles
+        35, 36, 37,     35, 39, 38,     35, 38, 37,         // Upper middle, upper right triangles 
+        40, 41, 42,     40, 44, 43,     40, 43, 42,         // Upper middle, lower left triangles
+        45, 46, 47,     45, 49, 48,     45, 48, 47,         // Upper middle, upper left triangles 
+        50, 51, 52,     50, 54, 53,     50, 53, 52,         // Upper middle, back triangles
+        55, 56, 57,     55, 59, 58,     55, 58, 57,         // Upper triangles
     ];
 
     // gl.ELEMENT_ARRAY_BUFFER: Buffer used for element indices.
@@ -298,7 +343,7 @@ function createDodecahedron(gl, translation, rotationAxis) {
 
     let cube = {
         buffer: vertexBuffer, colorBuffer: colorBuffer, indices: cubeIndexBuffer,
-        vertSize: 3, nVerts: 35, colorSize: 4, nColors: 35, nIndices: 63,
+        vertSize: 3, nVerts: 60, colorSize: 4, nColors: 60, nIndices: 108,
         primtype: gl.TRIANGLES, modelViewMatrix: mat4.create(), currentTime: Date.now()
     };
 
