@@ -1,7 +1,7 @@
 # Documentación Primer Tarea
 ## Daniel Roa  -   A01021960
 
-![Imagen demostrando su funcionamiento](./imgs/figuras.jpg)
+![Imagen demostrando su funcionamiento](\imgs\figuras.jpg)
 
 La documentación está siendo dividida en dos secciones:
 
